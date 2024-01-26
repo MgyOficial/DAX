@@ -1,0 +1,33 @@
+Calendario = 
+ADDCOLUMNS(
+    CALENDAR(DATE(YEAR(MIN(Entregas[f350_fecha])),01,01),
+        DATE(YEAR(MAX(Entregas[f350_fecha])),12,31)),
+        "Año",YEAR([Date]),
+        "Mes Numero",MONTH([Date]),
+        "Mes Nombre",
+            Var MesNombre=FORMAT([Date],"mmmm")
+            Var X=UPPER(LEFT(MesNombre))
+            Var Y=MID(MesNombre,2,LEN(MesNombre))
+            Return
+            X&Y,
+        "Dia Numero",DAY([Date]),
+        "Dia Nombre",
+            Var DiaNombre=FORMAT([Date],"ddd")
+            Var X_=UPPER(LEFT(DiaNombre))
+            Var Y_=MID(DiaNombre,2,LEN(DiaNombre))
+            Return
+            X_&Y_,
+        "Dia Semana",WEEKDAY([Date],2),
+        "Semanas",WEEKNUM([Date],1),
+        "Dia Semana_Mes",
+            ROUNDUP(DIVIDE(DAY([Date]),7),0),
+        "Trimestre","Tri. "&QUARTER([Date]),
+        "Mes_Corto",
+            Var MesNombre=FORMAT([Date],"mmm")
+            Var X=UPPER(LEFT(MesNombre))
+            Var Y=MID(MesNombre,2,LEN(MesNombre))
+            Return
+            X&Y
+       
+        
+)
